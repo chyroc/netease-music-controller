@@ -63,7 +63,6 @@
       "js"
     ],
     "coveragePathIgnorePatterns": [
-      "/node_modules/",
       "/test/"
     ],
     "coverageThreshold": {
@@ -127,6 +126,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "execa": "^1.0.0",
     "qrcode-terminal": "^0.12.0",
     "qs": "^6.10.3",
     "run-applescript": "^6.0.0",
