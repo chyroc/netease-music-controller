@@ -5,7 +5,15 @@ export default class NeteaseMusicController {
    * exit: 退出程序
    * */
   public async exit(): Promise<void> {
-    await runAppleScript(command.exit)
+    try {
+      await runAppleScript(command.exit)
+    } catch (e) {
+      const isExit = `${e}`.includes('不能获得“process "NeteaseMusic"”')
+      if (isExit) {
+        return
+      }
+      throw e
+    }
   }
 }
 
