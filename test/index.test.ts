@@ -2,10 +2,16 @@ import NeteaseMusicController from '../src'
 
 describe('Dummy test', () => {
   it('works if true is truthy', async () => {
-    expect(true).toBeTruthy()
-    const controller = new NeteaseMusicController()
-    const res = await controller.exit()
-    console.log('res', res)
+    // console.log('getPlayState', await NeteaseMusicController.getPlayState())
+    await NeteaseMusicController.nextTrack()
+    // await NeteaseMusicController.previousTrack()
+    // await NeteaseMusicController.likeTrack()
+    // await NeteaseMusicController.dislikeTrack()
+    // await NeteaseMusicController.turnDownVolume()
+    // await NeteaseMusicController.turnUpVolume()
+    // await NeteaseMusicController.play()
+    // await NeteaseMusicController.pause()
+    // await NeteaseMusicController.toggleLyrics()
   })
 
   it('NeteaseMusicController is instantiable', () => {
