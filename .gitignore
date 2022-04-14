@@ -15,3 +15,4 @@ src/index.js
 src/run.js
 debug-rollup.config.ts
 Makefile
+examples.ts

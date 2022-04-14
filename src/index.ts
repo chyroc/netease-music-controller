@@ -13,21 +13,21 @@ export default class NeteaseMusicController {
   /*
    * play: 播放
    * */
-  public async play(): Promise<void> {
+  public static async play(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.play), [`不能获得“menu item "播放"`])
   }
 
   /*
    * pause: 暂停
    * */
-  public async pause(): Promise<void> {
+  public static async pause(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.pause), [`不能获得“menu item "暂停"`])
   }
 
   /*
    * getPlayState: 获取播放状态
    * */
-  public async getPlayState(): Promise<NeteaseMusic.PlayState> {
+  public static async getPlayState(): Promise<NeteaseMusic.PlayState> {
     const res = await NeteaseMusicController.runNeteaseMusic(command.getMenuControlFirstItemText, [])
     if (res === NeteaseMusic.PlayState.Exit) {
       return res
@@ -42,56 +42,56 @@ export default class NeteaseMusicController {
   /*
    * nextTrack: 下一首
    * */
-  public async nextTrack(): Promise<void> {
+  public static async nextTrack(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.nextTrack), [])
   }
 
   /*
    * previousTrack: 上一首
    * */
-  public async previousTrack(): Promise<void> {
+  public static async previousTrack(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.previousTrack), [])
   }
 
   /*
    * likeTrack: 喜欢歌曲
    * */
-  public async likeTrack(): Promise<void> {
+  public static async likeTrack(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.likeTrack), [`不能获得“menu item "喜欢歌曲"`])
   }
 
   /*
    * dislikeTrack: 取消喜欢歌曲
    * */
-  public async dislikeTrack(): Promise<void> {
+  public static async dislikeTrack(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.dislikeTrack), [`不能获得“menu item "取消喜欢"`])
   }
 
   /*
    * turnUpVolume: 调高音量
    * */
-  public async turnUpVolume(): Promise<void> {
+  public static async turnUpVolume(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.turnUpVolume), [])
   }
 
   /*
    * turnUpVolume: 调低音量
    * */
-  public async turnDownVolume(): Promise<void> {
+  public static async turnDownVolume(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.turnDownVolume), [])
   }
 
   /*
    * toggleLyrics: 打开/关闭歌词
    * */
-  public async toggleLyrics(): Promise<void> {
+  public static async toggleLyrics(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.genMenuControlScript(command.toggleLyrics), [])
   }
 
   /*
    * exit: 退出程序
    * */
-  public async exit(): Promise<void> {
+  public static async exit(): Promise<void> {
     await NeteaseMusicController.runNeteaseMusic(command.exit, [])
   }
 
