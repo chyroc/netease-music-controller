@@ -1,8 +1,12 @@
 const { spawn } = require('child_process')
 
-export async function runCommand(command: string, args: string[]): Promise<{ code: number; stdout: string; stderr: string }> {
+export async function runCommand(command: string, args: string[], timeout: number): Promise<{ killed: boolean; code: number; stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
     const ls = spawn(command, args)
+
+    setTimeout(function() {
+      ls.kill()
+    }, timeout)
 
     let stdout = ''
     let stderr = ''
@@ -16,7 +20,7 @@ export async function runCommand(command: string, args: string[]): Promise<{ cod
     })
 
     ls.on('close', (code: number) => {
-      resolve({ stdout, stderr, code })
+      resolve({ stdout, stderr, code, killed: ls.killed })
     })
 
     ls.on('error', (err: Error) => {
@@ -29,9 +33,13 @@ export async function runAppleScript(script: any) {
   if (process.platform !== 'darwin') {
     throw new Error('macOS only')
   }
-  const { stdout, stderr, code } = await runCommand('osascript', ['-e', script])
+  const { stdout, stderr, killed, code } = await runCommand('osascript', ['-e', script], 1000)
   if (stdout) {
     return stdout
+  } else if (stderr) {
+    throw new Error(stderr)
+  } else if (killed) {
+    throw new Error('process was killed')
   }
-  throw new Error(stderr)
+  return ''
 }
