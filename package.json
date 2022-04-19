@@ -1,6 +1,6 @@
 {
   "name": "@chyroc/netease-music-controller",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "netease-music-controller nodejs sdk",
   "keywords": [
     "netease-music",
