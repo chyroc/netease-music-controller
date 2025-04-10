@@ -40,6 +40,18 @@ export default class NeteaseMusicController {
   }
 
   /*
+   * togglePlayPause: 切换播放/暂停
+   * */
+  public static async togglePlayPause(): Promise<void> {
+    const playState = await NeteaseMusicController.getPlayState()
+    if (playState === NeteaseMusic.PlayState.Playing) {
+      await NeteaseMusicController.pause()
+    } else {
+      await NeteaseMusicController.play()
+    }
+  }
+
+  /*
    * nextTrack: 下一首
    * */
   public static async nextTrack(): Promise<void> {

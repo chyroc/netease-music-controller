@@ -12,6 +12,7 @@ describe('Dummy test', () => {
     // await NeteaseMusicController.play()
     // await NeteaseMusicController.pause()
     // await NeteaseMusicController.toggleLyrics()
+    // await NeteaseMusicController.togglePlayPause()
   })
 
   it('NeteaseMusicController is instantiable', () => {
