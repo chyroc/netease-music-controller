@@ -84,6 +84,7 @@ end tell`
   } catch {
     // Default to English if detection fails
     detectedControlMenuName = 'Controls'
+    detectedLang = 'en'
     return 'en'
   }
 }

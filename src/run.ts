@@ -33,7 +33,7 @@ export async function runAppleScript(script: string): Promise<string> {
   if (process.platform !== 'darwin') {
     throw new Error('macOS only')
   }
-  const { stdout, stderr, killed, code } = await runCommand('osascript', ['-e', script], 1000)
+  const { stdout, stderr, killed } = await runCommand('osascript', ['-e', script], 1000)
   if (stdout) {
     return stdout
   } else if (stderr) {
