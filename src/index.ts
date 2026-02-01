@@ -77,7 +77,7 @@ end tell`
 
   try {
     const result = await runAppleScript(script)
-    const [menuName, lang] = result.split(',').map(s => s.trim())
+    const [menuName, lang] = result.split(',', 2).map(s => s.trim())
     detectedControlMenuName = menuName
     detectedLang = (lang as Lang) || 'en'
     return detectedLang
