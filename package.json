@@ -1,6 +1,6 @@
 {
   "name": "@chyroc/netease-music-controller",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "netease-music-controller nodejs sdk",
   "keywords": [
     "netease-music",
@@ -122,8 +122,6 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.22.11",
-    "typescript": "^3.0.3"
-  },
-  "dependencies": {
+    "typescript": "^3.9.10"
   }
 }

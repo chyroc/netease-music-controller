@@ -1,4 +1,4 @@
-const { spawn } = require('child_process')
+import { spawn } from 'child_process'
 
 export async function runCommand(command: string, args: string[], timeout: number): Promise<{ killed: boolean; code: number; stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
@@ -12,11 +12,11 @@ export async function runCommand(command: string, args: string[], timeout: numbe
     let stderr = ''
 
     ls.stdout.on('data', (data: Buffer) => {
-      stdout = data.toString()
+      stdout += data.toString()
     })
 
     ls.stderr.on('data', (data: Buffer) => {
-      stderr = data.toString()
+      stderr += data.toString()
     })
 
     ls.on('close', (code: number) => {
@@ -29,11 +29,11 @@ export async function runCommand(command: string, args: string[], timeout: numbe
   })
 }
 
-export async function runAppleScript(script: any) {
+export async function runAppleScript(script: string): Promise<string> {
   if (process.platform !== 'darwin') {
     throw new Error('macOS only')
   }
-  const { stdout, stderr, killed, code } = await runCommand('osascript', ['-e', script], 1000)
+  const { stdout, stderr, killed } = await runCommand('osascript', ['-e', script], 1000)
   if (stdout) {
     return stdout
   } else if (stderr) {
