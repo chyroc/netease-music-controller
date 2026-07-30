@@ -1,5 +1,9 @@
 # netease-music-controller
 
+Control the NeteaseMusic macOS app with Node.js and AppleScript.
+
+The controller supports both Chinese and English NeteaseMusic menus.
+
 ## Install
 
 ```shell
