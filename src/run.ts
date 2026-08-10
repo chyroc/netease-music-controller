@@ -2,28 +2,29 @@ import { spawn } from 'child_process'
 
 export async function runCommand(command: string, args: string[], timeout: number): Promise<{ killed: boolean; code: number; stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
-    const ls = spawn(command, args)
-
-    setTimeout(function() {
-      ls.kill()
+    const childProcess = spawn(command, args)
+    const timeoutID = setTimeout(() => {
+      childProcess.kill()
     }, timeout)
 
     let stdout = ''
     let stderr = ''
 
-    ls.stdout.on('data', (data: Buffer) => {
+    childProcess.stdout.on('data', (data: Buffer) => {
       stdout += data.toString()
     })
 
-    ls.stderr.on('data', (data: Buffer) => {
+    childProcess.stderr.on('data', (data: Buffer) => {
       stderr += data.toString()
     })
 
-    ls.on('close', (code: number) => {
-      resolve({ stdout, stderr, code, killed: ls.killed })
+    childProcess.on('close', (code: number) => {
+      clearTimeout(timeoutID)
+      resolve({ stdout, stderr, code, killed: childProcess.killed })
     })
 
-    ls.on('error', (err: Error) => {
+    childProcess.on('error', (err: Error) => {
+      clearTimeout(timeoutID)
       reject(err)
     })
   })
